@@ -1,5 +1,8 @@
 # ITEO (IT-Systemengineering & -Operations)
-Dieses Repository dient als Zusammenfassung zum Modul ITEO an der Hochschule Luzern.
+Dieses Repository dient als Zusammenfassung zum Modul ITEO an der Hochschule Luzern 
+gemäss den zur Verfügung gestellten Unterlagen und Folien des Moduls.
+
+Als Versionisierung dient die Commit-History des [GitHub-Repositories](https://github.com/mtellenbach/hslu_iteo).
 
 ## Das ITEO-Haus
 ### 1. Fundament
@@ -8,7 +11,7 @@ Dieses Repository dient als Zusammenfassung zum Modul ITEO an der Hochschule Luz
 - Normen (IEEE)
 - Gesetze
 ### 2. Rechenzentrum
-Das Rechenzentrum setzt sich aus verschiedenen Komponenten zusammen (siehe Building Blocks).
+Das Rechenzentrum setzt sich aus verschiedenen Komponenten zusammen (siehe Das Datacenter -> Building Blocks).
 ### 3. Virtualisierung
 ### 4. Störungen & Ausbau
 ### 5. Monitoring
@@ -116,7 +119,7 @@ Problem: Brandgasverteilung durch Klimaanlage (Salzsäure)
 - Generatoren
 - EMP-Abschirmung
 
-### Staub / Schmutz / Wasser
+#### Staub / Schmutz / Wasser
 - Filteranlagen
 - Schleusen
 - Standortwahl
@@ -147,6 +150,8 @@ Problem: Brandgasverteilung durch Klimaanlage (Salzsäure)
 - Spannung
 - Leistung (kW)
 - Leistungsfaktor (cos phi)
+
+Die USV kann 
 
 #### Einzelne Geräte
 - Niederspannungsverteilungen
@@ -182,3 +187,96 @@ Problem: Brandgasverteilung durch Klimaanlage (Salzsäure)
 - Übertragungseinrichtung ausgeschaltet
 - Störung
 - Service
+
+### RZ Effizienz (PUE Faktor)
+PUE-Wert = Power Usage Effectiveness
+
+PUE = (Gesamte im RZ verbrauchte Energie) / (Verbrauch der IT-Geräte)
+
+Der PUE-Wert ist der Massstab für die Effizienz eines Rechenzentrums und wird im Umfeld von "Green IT"
+immer wieder benutzt.
+
+Optimaler Energieaufwand bei PUE = 1
+
+Guter Energieaufwand bei PUE = 1.2
+
+Optimierungsbedarf bei PUE > 1.4
+
+
+### Verfügbarkeitsverbesserungen
+Die Verfügbarkeit wird immer in Prozent angegeben. Relevant ist die Verfügbarkeit in Verbindung mit einem Zeitfenster.
+`7 * 24 hat einen höheren Wert als 5 * 9 bei einer Verfügbarkeit von 99%.`
+
+Folgende (Kosten-)Faktoren betreffen einen Ausfall eines Services:
+- Umsatzverlust
+- Wiederherstellungszeit/-kosten
+- Produktivitätsverlust
+- Immaterielle Verluste (Ansehen, Kundenzufriedenheit)
+
+#### Failover Cluster
+Ausgangslage: Aktiver Server und passiver Server
+
+Der passive (slave) Server dient als Fallback für den aktiven (master). Falls von einem Client aus über eine virtuelle IP-Adresse
+nicht mehr auf die IP des aktiven Servers zugreifen kann, schaltet der virtuelle Host auf den passiven um.
+
+Die Kommunikation findet dabei nur zwischen den Server zu dem virtuellen Host statt, sodass der Client
+nichts mitbekommt.
+
+#### Failover Datacenter
+Für ein aktives Rechenzentrum (production) wird ein identisches, passives Rechenzentrum (Development, Failover Production)
+bereitgestellt. Das passive Rechenzentrum repliziert sich dabei laufend mit dem aktiven Rechenzentrum.
+
+Die Synchronisierung findet in einzelnen Teilen kombiniert synchron oder asynchron statt. 
+Dies je nach relevanz der Daten.
+
+Synchron:
+- Fibre-Channel
+- 10G Ethernet
+
+Asynchron:
+- Internet (TCP/IP)
+
+#### Availability Environment Classification
+Die Harvard Research Group (HRG) teile Hochverfügbarkeit in ihrer Availability Environment Classification
+in sechs Klassen ein:
+- **AEC-0** *Conventional*: Funktion kann unterbrochen werden, Datenintegrität nicht essentiell
+- **AEC-1** *Highly Reliable*: Funktion kann unterbrochen werden, Datenintegrität muss gewährleistet werden
+- **AEC-2** *High Availability*: Funktion darf nur innerhalb festgelegten Zeiten oder zur Hauptbetriebszeit minimal unterbrochen werden
+- **AEC-3** *Fault Resilient*: Funktion muss innerhalb festgelegter Zeiten oder während der Hauptbetriebszeit ununterbrochen aufrechterhalten werden
+- **AEC-4** *Fault Tolerant*: Funktion muss ununterbrocken aufrechterhalten werden, 24/7-Betrieb muss gewährleistet sein
+- **AEC-5** *Disaster Tolerant*: Funktion muss unter allen Umständen verfügbar sein
+
+#### Repetitionsfragen
+- **Welche Verfügbarkeit muss im SLA festgehalten werden, wenn ich
+  1h Ausfallzeit während den Bürozeiten nicht überschreiten will?**
+99.9574% = (1 - (1/(5 * 9 * 261))) * 100
+- **Was versteht man unter Failover-Cluster-Services?**
+Ein System übernimmt als Fallback unterbruchfrei die Funktionen eines anderen Systems, falls dieses ausfällt.
+- **Wenn z.B. das SAN gespiegelt werden soll, wie erhöhen sich die
+  Kosten?
+  50% / 100% / mehr als 100% und warum?**
+Mehr als 100% => Da zusätzlicher Server, Disks, Kabel, Failover, komplizierter Netzaufbau, Wartung, Lizenzen usw...
+
+### Tier Levels im Datcenter
+N = Anzahl Server
+N + 1 = Für N Server stehen N + 1 Server zur Verfügung
+
+1. Redundanz: N, \
+jährl. Ausfallzeit: 28.8h \
+99.67% Verfügbarkeit
+
+2. Redundanz: N+1, \
+jährl. Ausfallzeit: 22h, \
+99.75% Verfügbarkeit
+
+3. Redundanz: N+1, \
+jährl. Ausfallzeit: 1.6h, \
+99.98% Verfügbarkeit
+
+4. Redundanz: 2 * (N+1), \
+jährl. Ausfallzeit: 0.8h, \
+99.99% Verfügbarkeit
+
+### Information Lifecycle Management
+
+### Tiered Storage
