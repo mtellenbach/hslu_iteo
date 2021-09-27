@@ -269,14 +269,67 @@ jährl. Ausfallzeit: 28.8h \
 jährl. Ausfallzeit: 22h, \
 99.75% Verfügbarkeit
 
-3. Redundanz: N+1, \
+3. Redundanz: N+1,
 jährl. Ausfallzeit: 1.6h, \
-99.98% Verfügbarkeit
+99.98% Verfügbarkeit -> gegenüber Tier 2 zusätzliche Systeme (Failover-Cluster usw.)
 
-4. Redundanz: 2 * (N+1), \
+4. Redundanz: 2 * (N+1), (2 * Tier 3 parallel geschaltet) \
 jährl. Ausfallzeit: 0.8h, \
 99.99% Verfügbarkeit
 
-### Information Lifecycle Management
+### Information Lifecycle Management (ILM)
+Beschreibt die Speicherstrategie eines Rechenzentrums.
+
+#### Anforderungen
+- Storage Management
+- Document Lifecycle Management
+- Content Life Cycle Management
+- Records Management \
+Einträge von Datenbanken/Excel - was speichere ich wo ab? Anordnung GL und Rechtsabteilung, Durchsetzung Abteilungsleiter
+
+#### Regeln
+Kriterien, nach welchen die Daten gespeichert werden:
+- Änderungshäufigkeit
+- Zugriffsgeschwindigkeit
+- Zugriffshäufigkeit
+- Kosten
+- Ökonomischer Wert
+- Relevante gesetzliche Bestimmungen
+
+Danach werden die Daten auf die angemessenen Speichermedien verschoben und am Ende des Lifecycles gelöscht.
+
+#### Active vs. Inactive Data
+Ungefähr 40% des Speicherplatzes werden mit Daten befüllt, welche nicht aktiv benötigt werden. Diese Daten
+werden trotzdem wie aktive Daten behandelt.
 
 ### Tiered Storage
+Klassifiziert nach Zugriffsgeschwindigkeit von schnell (fast) bis archiviert (archived).
+«Verschiedene Datenklassen gespeichert auf verschiedenen Speicherklassen»
+
+1. Mission Critical Data (Beispiel: Datenbank einer Bank)
+2. Business Critical Data (Beispiel: Tägliche Benutzung)
+3. Nearline or Historical Data (Beispiel: Archiv)
+4. Offline Data (Beispiel: Ausgelagerte Festplatten ohne Strom)
+
+#### Tier-1
+- Höchster Speed
+- Sehr zuverlässig
+- Hohe Skalierbarkeit
+- Sehr teuer
+
+#### Tier-2
+- Mittlerer Speed
+- Zuverlässigkeit OK
+- Skalierung limitiert
+- Weniger teuer
+
+#### Tier-n
+- Hohe Kapazität
+- Niedrigerer Speed
+- Sehr kleine Kosten pro TB
+
+#### spezialisiert
+- Offsite Tape Archivierung
+- Einmal beschreibbar (WORM -> Write once read many times)
+- Dist-to-Disk backup
+
