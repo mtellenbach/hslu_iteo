@@ -151,8 +151,6 @@ Problem: Brandgasverteilung durch Klimaanlage (Salzsäure)
 - Leistung (kW)
 - Leistungsfaktor (cos phi)
 
-Die USV kann 
-
 #### Einzelne Geräte
 - Niederspannungsverteilungen
 - Schalterstellungen 0/1
