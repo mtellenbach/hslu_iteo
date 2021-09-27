@@ -347,7 +347,7 @@ Je nach Anforderungen werden folgende Kriterien berücksichtigt:
 - NW-Management
 - usw...
 
-#####Technologien
+##### Technologien
 - Kupferkabel: 
   - ADSL mit 2 - ca. 16 Mbit/s
   - VDSL mit 20 - ca. 300 Mbit/s
