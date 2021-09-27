@@ -331,3 +331,85 @@ Klassifiziert nach Zugriffsgeschwindigkeit von schnell (fast) bis archiviert (ar
 - Einmal beschreibbar (WORM -> Write once read many times)
 - Dist-to-Disk backup
 
+## Netzwerke im Rechenzentrum
+### Topologie
+#### Provider
+Vielfalt der Provider ist nicht gut zu überblicken. Liste unter [https://www.providerliste.ch/](https://www.providerliste.ch/).
+Je nach Anforderungen werden folgende Kriterien berücksichtigt:
+- Global, regional, lokal
+- Gemischte und Bundle-Angebot
+- Vertrauen
+- Geschichte
+- Reputation
+- Verträge
+- Support
+- Verfügbarkeiten
+- NW-Management
+- usw...
+
+#####Technologien
+- Kupferkabel: 
+  - ADSL mit 2 - ca. 16 Mbit/s
+  - VDSL mit 20 - ca. 300 Mbit/s
+  - SDSL mit 2 - 200 Mbit/s
+- Antennenkabel:
+  - Paralles zum TV-Signal, 2 - 500 Mbit/s
+- Glasfaser:
+  - Mit 10 Mbit/s - 10 Gbit/s
+- Richtfunk:
+  - Abgelegene, unerschlossene Gebiete
+  - 1 - 200 Mbit/s (je nach Distanz)
+  
+Der Knotenpunkt mit der tiefsten Durchlaufsrate bestimmt die gesamte Übertragungsrate.
+Der Provider kann mir keine minimale Übertragungsrate garantieren.
+
+#### Grenze
+
+##### Router
+Der Router wird oft in Firewall oder in Layer3-Switches integriert.
+
+Arbeitet mit IP-Paketen und umsetzt diese vom öffentlichen in private Adressen und verbindet deshalb verschiedene Netze aneinander.
+
+Sorgt für optimale Weiterleitungen bei redundanten Leitungen oder Fallback-Szenarien.
+
+Erhält QOS durch spezifische Weiterleitungen auf, kann auch VPN-Endpoint sein (Kerberos, Radius).
+
+Passt sich an unterschiedliche Netzwerktechniken an (Ethernet, xDSL, PPPoE, ISDN, ATM, FDDI).
+
+##### Firewall
+Dient als Sicherheitsbaustein im Netzwerk und übernimmt meist auch Routing-Funktionen.
+Konfigurierbar durch Regeln, welche die Weiterleitungen von unerwünschten Netzwerkpaketen sperrt.
+VPN-Endpunkt mit Authentifizierung (lokal, Radius, AD).
+
+Die Firewall kann auf allen OSI-Schichten arbeiten, also auch als Software auf einem einzelnen Client oder auch als physisches Gerät am Physical Layer.
+
+##### IDP (Intrusion Detection Prevention)
+Fasst sich zusammen aus Intrusion Detection Systeme (IDS => Erkennung) und Intrusion Prevention Systeme (IPS => Vorbeugung) \
+IDS + IPS = IDP
+
+Detection: Eindringungsversuche erkennen (Mustererkennung, DOS, Fakes, Portscan, IP-Spoofing, usw.) \
+Rechenintensive Funktion, oft separates Device
+
+#### DMZ (Demilitarized Zone)
+Die DMZ ist ein geschützter Bereich innerhalb eines Netzwerkes, worin bestimmte Zugriffe erlaubt werden
+(WWW, Mail, FTP, usw.).
+
+Die DMZ hängt typischerweise an der Firewall an einem separaten Port und ist nur durch eine Authentifizierung
+an der Firewall erreichbar.
+
+Zur erhöhten Sicherheit konfiguriert man im DMZ Model 2 entsprechend die DMZ zwischen zwei separaten (ungleichen)
+Firewalls. Aus dem WWW kommen Pakete durch die erste Firewall in die DMZ und dann über die zweite Firewall
+ins innere Netzwerk. Dies ergibt eine doppelte Authentifizierung.
+
+#### Netzwerk / Redundanz
+- 1 Provider / 2 Zugängen oder ...
+- ... 2 Provider / je 1 Zugang
+- Ausfallüberwachung nötig (Router verbunden)
+- Getrennte Wege/Trasse (2 Hauseinführungen)
+- Ev. Verschiedene Medien (Glasfaser, Kabelanschluss, Laserlink, Satellit)
+- Loadbalancing (Beide Verbindungen gleichzeitig benutzbar)
+
+#### Lokales Netzwerk (LAN)
+##### LAN-Strukturen
+- TOR (Top Of Rack): Jedes Rack hat eigene Switches
+- EOR (End Of Row): Racks nur über Patchpanels verbunden -> Switches in separaten Racks
