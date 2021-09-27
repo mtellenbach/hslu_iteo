@@ -413,3 +413,33 @@ ins innere Netzwerk. Dies ergibt eine doppelte Authentifizierung.
 ##### LAN-Strukturen
 - TOR (Top Of Rack): Jedes Rack hat eigene Switches
 - EOR (End Of Row): Racks nur über Patchpanels verbunden -> Switches in separaten Racks
+
+##### Einfaches Layout
+- Peering / Peripherie:
+  - Anschluss nach aussen
+  - Zentrale Knoten
+  - Firewalls
+  - Router
+- Backbone / Spine / Core
+  - Rückgrat
+  - zentrales Netz
+  - Verbindungen innerhalb des Rechenzentrums
+- Leaf / Access
+  - Anschlüsse für Server
+  - Anschlüsse für Peripherie
+  - Abgänge auf Gebäude-LAN
+
+##### Grössere Strukturen
+- Peering
+  - Externe Verbindungen
+  - VPN Endpunkte
+  - ISP
+- Core
+  - Zentrale Verbindungen
+  - Auch Rechenzentrum zu Rechenzentrum
+- Aggregation Layer/s
+  - Direkte Verbindungen von Serverfarmen
+  - Verbindungen innerhalb der Rackreihen
+- Access- / Leaf-Switches
+  - Zugangspunkt für physikalische Server und Komponenten
+
