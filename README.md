@@ -443,3 +443,64 @@ ins innere Netzwerk. Dies ergibt eine doppelte Authentifizierung.
 - Access- / Leaf-Switches
   - Zugangspunkt für physikalische Server und Komponenten
 
+##### Services
+**MPLS** (Multiprotocol Label Switching)
+VPN-ähnliche Strukturen zur Verbindung von zusammengehörigen Netzen ohne Rücksicht
+auf IP-Segmente. Ein Paket bekommt dabei vom Provider ein eindeutiges Label.
+
+##### Produkte
+- Core Switches von CISCO
+- Huawei Core Switches mit bis zu 100 GE
+
+##### Technikbegriffe
+**VLAN**:
+- Virtual LAN
+- Getrennte Netze auf gemeinsamer Hardware
+- Tagged oder Untagged
+- Trunks:
+  - Verbindet Switches untereinander
+  - Mehrere VLANs dürfen **durch den Trunk** mit dem gleichen VLAN auf anderer Switch kommunizieren
+- Access Port
+
+**DNS** (Domain Name System/Service):
+Zuordnung von IP-Adressen zu DNS-Name (Fully-Qualified Domain Name)
+
+Domainname wird rekursiv aufgelöst (DNS-Server zu DNS-Server).
+Z.B. Anfrage auf "de.wikipedia.org": \
+.org -> .wikipedia -> .de
+
+**IPAM** (IP Address Management):
+MS Service oder separate Verwaltungstools
+
+**DHCP** (Dynamic Host Configuration Protocol):
+Dynamische oder reservierte Zuweisung von IP-Adressen und weitere Eigenschaften an
+einen TCP/IP-Client
+
+**NAP** (Network Access Protection) oder
+**NAC** (Network Access Control):
+Qualifiziert den Client anhand von verschiedenen Parametern (User, OS, Version, Antivirus, usw...)
+
+Zuordnung zu den erlaubten Netzwerken oder nur zur Quarantäne Zone.
+
+### Management
+#### Netzwerkmanagement
+- Verwaltung, Betriebstechnik und Überwachung von IT-Netzwerken und Telekommunikationsnetzen
+- OAM(&P): Operation, Administration, Maintenance (& Provisioning)
+- ISO: FCAPS Fault/Config/Accounting/Performance/Security Management
+
+#### Systemmanagement
+Monitoring aller Betriebsparameter und der Konfiguration nach ITIL
+
+#### Management Netzwerk
+Getrenntes LAN, welches nur für das Management benutzt wird und beschränkt zugreifbar
+ist. Kann deshalb oft nur via Jump-Host mit Logging erreicht werden.
+
+### Kosten
+Annahme 1000 Server
+
+- **51%** Servers
+- **11%** Networking Equipment (z.B: Patchkabel)
+- **19%** Power Distribution & Cooling (z.B. Klimageräte und Lüftung)
+- **15%** Power (Strom/Energie)
+- **4%** Other Infrastructure (z.B. Überwachung)
+
