@@ -504,3 +504,61 @@ Annahme 1000 Server
 - **15%** Power (Strom/Energie)
 - **4%** Other Infrastructure (z.B. Überwachung)
 
+## Serversysteme in Rechenzentren
+Ein Server ist grundsätzlich dasselbe wie ein Desktop-Computer.
+
+Im Gegensatz zu den PC's bietet ein Server jedoch zusätzliche Vorteile wie:
+- Mehrere (Multicore-)Prozessoren
+- Schnellere RAM-Optionen für verbesserte Anwendungsleistung (Interleave)
+- Zusätzliche Festplatteneinschübe für mehr Datenkapazität
+- Spezielle Netzwerkkarten (Hot-Plug)
+- Mehr Slots
+- Redundanz (Power, Ventil)
+- Fernsteuerung (Lights out)
+- usw...
+
+### Bauformen
+#### Tower
+Für ältere Serverräume ohne Rack
+
+#### 19-Zoll Rackmount
+- Rack-optimiert, standardisiert
+- 1 HE = 1 U = 1.75 Zoll = 4.45 cm
+- Meist ausziehbar für Wartung
+- Verkabelung auf Rückseite
+- Schwenkarm für Kabel
+- Luftführung vorne -> hinten
+- Hohe Packungsdichte
+- Gute Erweiterbarkeit dank standardisierten Rack-Masse
+
+#### Rackmount 
+**1 U für hohe Dichte**:
+- nur 1-2 Slots
+- 1-2 Festplatteneinschübe
+
+**2 U für Standardanwendungen**:
+- 2-8 Slotz für Zusatzkarten
+- Leistungsstarke Prozessoren
+- Mittlere RAM-Grössen
+- 2-24 Festplatteneinschübe
+
+**3-6 U für High Performance Rechner**:
+- Viele Slots
+- 2-8 Prozessoren
+- Höchste RAM-Grössen
+- Bis 48 oder mehr Festplatten
+
+#### Blade Server
+Chassis mit zentralisierten Komponenten, welche einzelnen Servern integriert zur Verfügung stehen.
+
+- Höchste Dichte
+- Zentraliserte Komponenten
+  - Power Supplies (typischerweise unten)
+  - Management (typischerweise Rückseite)
+  - Switches (LAN + FC, interne Busverbindung für alle Server)
+  - Kühlung in Chassis integriert
+- Hot-Swap von ganzen Servern (Austausch während Betriebszeit)
+- Rip&Replace
+  - Automatische Provisionierung (Redundanz bei Austausch)
+- Flexibler Ausbau mit Switches
+- Alle Komponenten redundant und Hot-Swap
